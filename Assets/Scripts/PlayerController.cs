@@ -27,23 +27,23 @@ public class NewBehaviourScript : MonoBehaviour
     void Update()
     {
 
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+       // movement.x = Input.GetAxisRaw("Horizontal");
+      //  movement.y = Input.GetAxisRaw("Vertical");
 
-        //myRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * speed;
+        myRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * speed;
 
-        myAnim.SetFloat("moveX", movement.x);
-        myAnim.SetFloat("moveY", movement.y);
+        myAnim.SetFloat("moveX", myRB.velocity.x);
+        myAnim.SetFloat("moveY", myRB.velocity.y);
 
         if(Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
         {
-            myAnim.SetFloat("lastMoveX", movement.x);
-            myAnim.SetFloat("lastMoveY", movement.y);
+            myAnim.SetFloat("lastMoveX", myRB.velocity.x);
+            myAnim.SetFloat("lastMoveY", myRB.velocity.y);
         }
     }
-    void FixedUpdate()
-    {
-        myRB.MovePosition(myRB.position + movement * speed * Time.fixedDeltaTime);
-    }
+    //id FixedUpdate()
+   // {
+       // myRB.MovePosition(myRB.position + movement * speed * Time.fixedDeltaTime);
+   // }
 
 }
